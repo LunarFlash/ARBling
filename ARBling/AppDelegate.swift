@@ -4,7 +4,7 @@
 //
 //  Created by Yi Wang on 8/24/18.
 //  Copyright © 2018 Yi Wang. All rights reserved.
-//
+//  https://www.raywenderlich.com/5491-ar-face-tracking-tutorial-for-ios-getting-started
 
 import UIKit
 

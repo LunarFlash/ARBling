@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9D15368B213067E400307A81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D15368A213067E400307A81 /* AppDelegate.swift */; };
-		9D15368D213067E400307A81 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D15368C213067E400307A81 /* ViewController.swift */; };
+		9D15368D213067E400307A81 /* EmojiBlingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D15368C213067E400307A81 /* EmojiBlingViewController.swift */; };
 		9D153690213067E400307A81 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D15368E213067E400307A81 /* Main.storyboard */; };
 		9D153692213067E700307A81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D153691213067E700307A81 /* Assets.xcassets */; };
 		9D153695213067E700307A81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D153693213067E700307A81 /* LaunchScreen.storyboard */; };
@@ -36,7 +36,7 @@
 /* Begin PBXFileReference section */
 		9D153687213067E400307A81 /* ARBling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARBling.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D15368A213067E400307A81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9D15368C213067E400307A81 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9D15368C213067E400307A81 /* EmojiBlingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiBlingViewController.swift; sourceTree = "<group>"; };
 		9D15368F213067E400307A81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9D153691213067E700307A81 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9D153694213067E700307A81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -98,8 +98,8 @@
 			isa = PBXGroup;
 			children = (
 				9D15368A213067E400307A81 /* AppDelegate.swift */,
-				9D15368C213067E400307A81 /* ViewController.swift */,
-				9D15368E213067E400307A81 /* Main.storyboard */,
+				9D15368C213067E400307A81 /* EmojiBlingViewController.swift */,
+				9D1536B82130804D00307A81 /* Storyboards */,
 				9D153691213067E700307A81 /* Assets.xcassets */,
 				9D153693213067E700307A81 /* LaunchScreen.storyboard */,
 				9D153696213067E700307A81 /* Info.plist */,
@@ -123,6 +123,14 @@
 				9D1536AC213067E700307A81 /* Info.plist */,
 			);
 			path = ARBlingUITests;
+			sourceTree = "<group>";
+		};
+		9D1536B82130804D00307A81 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				9D15368E213067E400307A81 /* Main.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,7 +264,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9D15368D213067E400307A81 /* ViewController.swift in Sources */,
+				9D15368D213067E400307A81 /* EmojiBlingViewController.swift in Sources */,
 				9D15368B213067E400307A81 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

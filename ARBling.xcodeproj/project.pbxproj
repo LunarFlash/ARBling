@@ -14,6 +14,8 @@
 		9D153695213067E700307A81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D153693213067E700307A81 /* LaunchScreen.storyboard */; };
 		9D1536A0213067E700307A81 /* ARBlingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D15369F213067E700307A81 /* ARBlingTests.swift */; };
 		9D1536AB213067E700307A81 /* ARBlingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1536AA213067E700307A81 /* ARBlingUITests.swift */; };
+		9D1536BB213099AC00307A81 /* EmojiNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1536B9213099AC00307A81 /* EmojiNode.swift */; };
+		9D1536BC213099AC00307A81 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1536BA213099AC00307A81 /* StringExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		9D1536A6213067E700307A81 /* ARBlingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ARBlingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D1536AA213067E700307A81 /* ARBlingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARBlingUITests.swift; sourceTree = "<group>"; };
 		9D1536AC213067E700307A81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9D1536B9213099AC00307A81 /* EmojiNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiNode.swift; sourceTree = "<group>"; };
+		9D1536BA213099AC00307A81 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +101,8 @@
 		9D153689213067E400307A81 /* ARBling */ = {
 			isa = PBXGroup;
 			children = (
+				9D1536B9213099AC00307A81 /* EmojiNode.swift */,
+				9D1536BD213099B200307A81 /* Extension */,
 				9D15368A213067E400307A81 /* AppDelegate.swift */,
 				9D15368C213067E400307A81 /* EmojiBlingViewController.swift */,
 				9D1536B82130804D00307A81 /* Storyboards */,
@@ -131,6 +137,14 @@
 				9D15368E213067E400307A81 /* Main.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		9D1536BD213099B200307A81 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				9D1536BA213099AC00307A81 /* StringExtension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,7 +278,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D1536BC213099AC00307A81 /* StringExtension.swift in Sources */,
 				9D15368D213067E400307A81 /* EmojiBlingViewController.swift in Sources */,
+				9D1536BB213099AC00307A81 /* EmojiNode.swift in Sources */,
 				9D15368B213067E400307A81 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

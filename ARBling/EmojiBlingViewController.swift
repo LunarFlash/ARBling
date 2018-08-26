@@ -15,7 +15,14 @@ class EmojiBlingViewController: UIViewController {
     @IBOutlet var sceneView: ARSCNView!
     
     // MARK: - Variables
-    let noseOptions = ["👃", "🐽", "💧", "⏄", " "]
+    // last element is left blank for switching off emoji bling for the traget area
+    let noseOptions = ["👃", "🐽", "💧", " "]
+    let eyeOptions = ["👁", "🌕", "🌟", "🔥", "⚽️", "🔎", " "]
+    let mouthOptions = ["👄", "👅", "❤️", " "]
+    let hatOptions = ["🎓", "🎩", "🧢", "⛑", "👒", " "]
+
+    let features = ["nose", "leftEye", "rightEye", "mouth", "hat"]
+    let featureIndices = [[9], [1064], [42], [24, 25], [20]]
 
 
     override func viewDidLoad() {
@@ -36,22 +43,36 @@ class EmojiBlingViewController: UIViewController {
         super.viewWillDisappear(animated)
         sceneView.session.pause()
     }
+}
 
-    // MARK: - Actions
-
+// MARK: - Actions
+extension EmojiBlingViewController {
+    @IBAction func handleTap(_ sender: UITapGestureRecognizer) {
+        // Get the location of the tap within the sceneView.
+        let location = sender.location(in: sceneView)
+        // Perform a hit test to get a list of nodes under the tap location.
+        let results = sceneView.hitTest(location, options: nil)
+        // Get the first (top) node at the tap location and make sure it’s an EmojiNode.
+        if let result = results.first, let node = result.node as? EmojiNode {
+            // Call the next() method to switch the EmojiNode to the next option in the list you used, when you created it.
+            node.next()
+        }
+    }
 }
 
 // MARK: - Helpers
 extension EmojiBlingViewController {
 
     func updateFeatures(for node: SCNNode, using anchor: ARFaceAnchor) {
-        // Search node for a child whose name is “nose” and is of type EmojiNode
-        let child = node.childNode(withName: "nose", recursively: false) as? EmojiNode
-        // Get the vertex at index 9 from the ARFaceGeometry property of the ARFaceAnchor and put it into an array.
-        // Where did index 9 come from? It’s a magic number. The ARFaceGeometry has 1220 vertices in it and index 9 is on the nose. This works, for now, but you’ll briefly read later the dangers of using these index constants and what you can do about it.
-        let vertices = [anchor.geometry.vertices[9]]
-        //     Use a member method of EmojiNode to update it’s position based on the vertex. This updatePosition(for:) method takes an array of vertices and sets the node’s position to their center.
-        child?.updatePosition(for: vertices)
+        // Loop through the features and featureIndexes that you defined at the top of the class.
+        for (feature, indices) in zip(features, featureIndices)  {
+            // Find the the child node by the feature name and ensure it is an EmojiNode.
+            let child = node.childNode(withName: feature, recursively: false) as? EmojiNode
+            // Map the array of indexes to an array of vertices using the ARFaceGeometry property of the ARFaceAnchor.
+            let vertices = indices.map { anchor.geometry.vertices[$0] }
+            // Update the child node’s position using these vertices.
+            child?.updatePosition(for: vertices)
+        }
     }
 
 }
@@ -79,6 +100,25 @@ extension EmojiBlingViewController: ARSCNViewDelegate {
         noseNode.name = "nose"
         // Add the nose node to the face node.
         node.addChildNode(noseNode)
+
+        let leftEyeNode = EmojiNode(with: eyeOptions)
+        leftEyeNode.name = "leftEye"
+        leftEyeNode.rotation = SCNVector4(0, 1, 0, GLKMathDegreesToRadians(180.0))
+        node.addChildNode(leftEyeNode)
+
+        let rightEyeNode = EmojiNode(with: eyeOptions)
+        rightEyeNode.name = "rightEye"
+        node.addChildNode(rightEyeNode)
+
+        let mouthNode = EmojiNode(with: mouthOptions)
+        mouthNode.name = "mouth"
+        node.addChildNode(mouthNode)
+
+        let hatNode = EmojiNode(with: hatOptions)
+        hatNode.name = "hat"
+        node.addChildNode(hatNode)
+
+
         // Call our helper function that repositions facial features.
         updateFeatures(for: node, using: faceAnchor )
 

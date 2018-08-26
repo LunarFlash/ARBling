@@ -60,13 +60,28 @@ extension EmojiBlingViewController {
 extension EmojiBlingViewController: ARSCNViewDelegate {
 
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
-        guard let device = sceneView.device else { return nil }
+        guard let faceAnchor = anchor as? ARFaceAnchor,
+            let device = sceneView.device else {
+                return nil
+        }
         // Create a face geometry to be rendered by the Metal device.
         let faceGeometry = ARSCNFaceGeometry(device: device)
         // Create a SceneKit node based on the face geometry.
         let node = SCNNode(geometry: faceGeometry)
         // Set the fill mode for the node’s material to be just lines.
         node.geometry?.firstMaterial?.fillMode = .lines
+
+        // Hide the mesh mask by making it transparent.
+        node.geometry?.firstMaterial?.transparency = 0.0
+        // Create an EmojiNode using our defined nose options.
+        let noseNode = EmojiNode(with: noseOptions)
+        // Name the nose node, so it can be found later.
+        noseNode.name = "nose"
+        // Add the nose node to the face node.
+        node.addChildNode(noseNode)
+        // Call our helper function that repositions facial features.
+        updateFeatures(for: node, using: faceAnchor )
+
         return node
     }
 
@@ -76,5 +91,6 @@ extension EmojiBlingViewController: ARSCNViewDelegate {
         let faceGeometry = node.geometry as? ARSCNFaceGeometry else { return }
         // Update the ARSCNFaceGeometry using the ARFaceAnchor’s ARFaceGeometry
         faceGeometry.update(from: faceAnchor.geometry)
+        updateFeatures(for: node, using: faceAnchor)
     }
 }

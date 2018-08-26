@@ -72,6 +72,25 @@ extension EmojiBlingViewController {
             let vertices = indices.map { anchor.geometry.vertices[$0] }
             // Update the child node’s position using these vertices.
             child?.updatePosition(for: vertices)
+
+            switch feature {
+            case "leftEye":
+                // Save off the x-scale of the node defaulting to 1.0.
+                let scaleX = child?.scale.x ?? 1.0
+                // Get the blend shape coefficient for eyeBlinkLeft and default to 0.0 (unblinked) if it’s not found.
+                let eyeBlinkValue = anchor.blendShapes[.eyeBlinkLeft]?.floatValue ?? 0.0
+                // Modify the y-scale of the node based on the blend shape coefficient.
+                child?.scale = SCNVector3(scaleX, 1.0 - eyeBlinkValue, 1.0)
+            case "rightEye":
+                let scaleX = child?.scale.x ?? 1.0
+                let eyeBlinkValue = anchor.blendShapes[.eyeBlinkRight]?.floatValue ?? 0.0
+                child?.scale = SCNVector3(scaleX, 1.0 - eyeBlinkValue, 1.0)
+            case "mouth":
+                let jawOpenValue = anchor.blendShapes[.jawOpen]?.floatValue ?? 0.2
+                child?.scale = SCNVector3(1.0, 0.8 + jawOpenValue, 1.0)
+            default:
+                break
+            }
         }
     }
 

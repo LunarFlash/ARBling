@@ -4,6 +4,7 @@
 
 import SceneKit
 
+/// Render a String. Takes an array of Strings and can cycle through them as desired.
 class EmojiNode: SCNNode {
   
   var options: [String]

@@ -14,6 +14,8 @@ class EmojiBlingViewController: UIViewController {
     // MARK: - Outlets
     @IBOutlet var sceneView: ARSCNView!
     
+    // MARK: - Variables
+    let noseOptions = ["👃", "🐽", "💧", "⏄", " "]
 
 
     override func viewDidLoad() {
@@ -41,6 +43,16 @@ class EmojiBlingViewController: UIViewController {
 
 // MARK: - Helpers
 extension EmojiBlingViewController {
+
+    func updateFeatures(for node: SCNNode, using anchor: ARFaceAnchor) {
+        // Search node for a child whose name is “nose” and is of type EmojiNode
+        let child = node.childNode(withName: "nose", recursively: false) as? EmojiNode
+        // Get the vertex at index 9 from the ARFaceGeometry property of the ARFaceAnchor and put it into an array.
+        // Where did index 9 come from? It’s a magic number. The ARFaceGeometry has 1220 vertices in it and index 9 is on the nose. This works, for now, but you’ll briefly read later the dangers of using these index constants and what you can do about it.
+        let vertices = [anchor.geometry.vertices[9]]
+        //     Use a member method of EmojiNode to update it’s position based on the vertex. This updatePosition(for:) method takes an array of vertices and sets the node’s position to their center.
+        child?.updatePosition(for: vertices)
+    }
 
 }
 
